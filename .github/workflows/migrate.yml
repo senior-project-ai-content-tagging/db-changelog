@@ -1,5 +1,12 @@
 name: DB-Migrator
 on: [push]
+env:
+  SPRING_PROFILES_ACTIVE: ${{ vars.SPRING_PROFILES_ACTIVE }}
+  CLASSPATH: ${{ github.workspace }}/${{ vars.CLASSPATH }}
+  CHANGELOG_PATH: ${{ vars.CHANGELOG_PATH }}
+  DB_USERNAME: ${{ secrets.DB_USERNAME }}
+  DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+  DB_URL: ${{ secrets.DB_URL }}
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -11,9 +18,5 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
       - name: migrate
-        env:
-          DB_USERNAME: ${{ secrets.DB_USERNAME }}
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-          DB_URL: ${{ secrets.DB_URL }}
         run: java -jar ./db-changelog.jar
     
