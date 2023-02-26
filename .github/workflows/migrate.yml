@@ -11,11 +11,8 @@ jobs:
           java-version: '17'
       - name: migrate
         env:
-          SPRING_PROFILES_ACTIVE: ${{ secrets.SPRING_PROFILES_ACTIVE }}
           DB_USERNAME: ${{ secrets.DB_USERNAME }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
           DB_URL: ${{ secrets.DB_URL }}
-          CLASSPATH: "./src"
-          CHANGELOG_PATH: changelog/changelog-master.xml
         run: java -jar ./db-changelog.jar
     
