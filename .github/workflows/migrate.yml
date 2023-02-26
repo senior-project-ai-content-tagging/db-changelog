@@ -4,6 +4,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - run: echo "SPRING PROFILE = $SPRING_PROFILES_ACTIVE"
       - uses: actions/checkout@v3
       - uses: actions/setup-java@v3
         with:
