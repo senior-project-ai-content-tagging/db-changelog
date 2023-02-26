@@ -7,7 +7,14 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-java@v3
         with:
-          distribution: 'termurin'
+          distribution: 'temurin'
           java-version: '17'
-      - run: java -jar ./db-changelog.jar
+      - name: migrate
+        env:
+          DB_USERNAME: ${{ secrets.DB_USERNAME }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_URL: ${{ secrets.DB_URL }}
+          CLASSPATH: "./src"
+          CHANGELOG_PATH: changelog/changelog-master.xml
+        run: java -jar ./db-changelog.jar
     
