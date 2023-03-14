@@ -2,19 +2,34 @@
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
-        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
-		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
-		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
-		http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet id="changelog-1.0.0-1 create user_id_seq" author="Ponlawat Suparat">
+        <createSequence sequenceName="user_id_seq" incrementBy="1" startValue="1" />
+    </changeSet>
     <changeSet id="changelog-1.0.0-1" author="Ponlawat Suparat">
-        <createTable tableName="categories">
-            <column name="id" type="int" autoIncrement="true">
-                <constraints primaryKey="true"/>
+        <createTable tableName="users">
+            <column name="id" type="int8" valueSequenceNext="user_id_seq">
+                <constraints primaryKey="true" />
             </column>
-            <column name="name" type="varchar(255)"/>
-            <column name="visible" type="boolean" />
+            <column name="email" type="varchar(128)">
+                <constraints nullable="false" unique="true" />
+            </column>
+            <column name="password" type="varchar(128)">
+                <constraints nullable="false" />
+            </column>
+            <column name="first_name" type="varchar(64)">
+                <constraints nullable="false" />
+            </column>
+            <column name="last_name" type="varchar(64)">
+                <constraints nullable="false" />
+            </column>
+            <column name="role" type="varchar(32)">
+                <constraints nullable="false" />
+            </column>
+            <column name="api_key" type="varchar(128)" />
+            <column name="image_url" type="varchar(255)" />
+            <column name="webhook_url" type="varchar(255)" />
         </createTable>
     </changeSet>
 </databaseChangeLog>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet id="changelog-1.1.0-1 create content_id_seq" author="Ponlawat Suparat">
+        <createSequence sequenceName="content_id_seq" incrementBy="1" startValue="1" />
+    </changeSet>
+    <changeSet id="changelog-1.1.0-2 create contents table" author="Ponlawat Suparat">
+        <createTable tableName="contents">
+            <column name="id" type="int8" valueSequenceNext="content_id_seq">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="original_url" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="title" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+            <column name="content" type="text">
+                <constraints nullable="true" />
+            </column>
+            <column name="identifier" type="varchar(64)">
+                <constraints nullable="true" />
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
