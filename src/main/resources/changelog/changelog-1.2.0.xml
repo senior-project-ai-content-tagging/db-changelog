@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet id="changelog-1.2.0-1 create ticket_id_seq" author="Ponlawat Suparat">
+        <createSequence sequenceName="ticket_id_seq" incrementBy="1" startValue="1" />
+    </changeSet>
+    <changeSet id="changelog-1.2.0-2 create tickets table" author="Ponlawat Suparat">
+        <createTable tableName="tickets">
+            <column name="id" type="int8" valueSequenceNext="ticket_id_seq">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="user_id" type="int8">
+                <constraints nullable="false" foreignKeyName="fk_ticket_user" references="users(id)" />
+            </column>
+            <column name="type" type="varchar(10)">
+                <constraints nullable="false" />
+            </column>
+            <column name="content_id" type="int8">
+                <constraints nullable="false" foreignKeyName="fk_ticket_content" references="contents(id)" />
+            </column>
+            <column name="status" type="varchar(10)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>
