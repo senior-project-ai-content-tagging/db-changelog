@@ -14,4 +14,17 @@
             </column>
         </addColumn>
     </changeSet>
+    <changeSet id="changelog-1.3.0-3 change table content to content_en" author="Ponlawat Suparat">
+        <renameColumn tableName="contents" oldColumnName="content" newColumnName="content_en" />
+    </changeSet>
+    <changeSet id="changelog-1.3.0-4 change column title to title_th" author="Ponlawat Suparat">
+        <renameColumn tableName="contents" oldColumnName="title" newColumnName="title_th" />
+    </changeSet>
+    <changeSet id="changelog-1.3.0-2 add column title en" author="Ponlawat Suparat">
+        <addColumn tableName="contents">
+            <column name="title_en" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>
