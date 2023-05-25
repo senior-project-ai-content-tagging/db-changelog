@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet id="changelog-1.5.0-1 edit foieng key cascade delete" author="Ponlawat Suparat">
+        <preConditions onFail="MARK_RAN">
+            <foreignKeyConstraintExists foreignKeyName="fk_ticket_user"/>
+        </preConditions>
+        <dropForeignKeyConstraint baseTableName="tickets" constraintName="fk_ticket_user"/>
+        <addForeignKeyConstraint  baseColumnNames="user_id"
+                                  baseTableName="tickets"
+                                  baseTableSchemaName="public"
+                                  constraintName="fk_ticket_user"
+                                  deferrable="true"
+                                  initiallyDeferred="true"
+                                  onDelete="CASCADE"
+                                  onUpdate="RESTRICT"
+                                  referencedColumnNames="id"
+                                  referencedTableName="users"
+                                  referencedTableSchemaName="public"
+                                  validate="true"/>
+    </changeSet>
+    <changeSet id="changelog-1.5.0-2 edit foieng key cascade delete" author="Ponlawat Suparat">
+        <preConditions onFail="MARK_RAN">
+            <foreignKeyConstraintExists foreignKeyName="fk_ticket_content"/>
+        </preConditions>
+        <dropForeignKeyConstraint baseTableName="tickets" constraintName="fk_ticket_content"/>
+        <addForeignKeyConstraint  baseColumnNames="content_id"
+                                  baseTableName="tickets"
+                                  baseTableSchemaName="public"
+                                  constraintName="fk_ticket_content"
+                                  deferrable="true"
+                                  initiallyDeferred="true"
+                                  onDelete="CASCADE"
+                                  onUpdate="RESTRICT"
+                                  referencedColumnNames="id"
+                                  referencedTableName="contents"
+                                  referencedTableSchemaName="public"
+                                  validate="true"/>
+    </changeSet>
+</databaseChangeLog>
